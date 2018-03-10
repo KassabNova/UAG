@@ -19,7 +19,7 @@ int main()
     menuSelect();
 
 
-    getchar();
+    //getchar();
     return 0;
 }
 
