@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1520398720 source:c:\users\ckass\documents\code blocks\vetmax\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
+
