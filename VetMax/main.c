@@ -45,7 +45,6 @@ void menuSelect(void)
 
     do
     {
-        tiempoActual();
         tecla = getch();
         if (tecla==13)
         {
