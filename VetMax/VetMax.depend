@@ -6,10 +6,19 @@
 	<windows.h>
 	<time.h>
 
-1520644240 source:c:\users\ckass\documents\git\uag\vetmax\main.c
+1520906231 source:c:\users\ckass\documents\git\uag\vetmax\main.c
+	"util.h"
+
+1520711086 c:\users\ckass\documents\git\uag\vetmax\util.h
+
+1520907715 source:c:\users\ckass\documents\git\uag\vetmax\util.c
 	<stdio.h>
 	<conio.h>
 	<stdlib.h>
 	<windows.h>
 	<time.h>
+	"util.h"
+
+1520710290 c:\users\ckass\documents\git\uag\vetmax\sqlite3.h
+	<stdarg.h>
 
