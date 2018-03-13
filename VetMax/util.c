@@ -45,7 +45,6 @@ void menuSelect(void)
                 case 4:
                 {
 					Sleep(100);
-					Creditos();
 					loop = 1;
                     break;
                 }
@@ -517,7 +516,7 @@ void Creditos(void)
 			cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
 
 		}while(--y>1);
-	x=1;
+	x=10;
 	}while(x<1);
 
 return;
