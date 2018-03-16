@@ -1,3 +1,4 @@
+
 void menuTitulo(void);
 void menuCuerpoRegistro(void);
 void menuCuerpoAbrir(void);
