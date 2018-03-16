@@ -13,6 +13,7 @@
 				<Option compiler="bcc" />
 				<Compiler>
 					<Add option="-v" />
+					<Add option="-g250" />
 				</Compiler>
 				<Linker>
 					<Add option="-v" />
@@ -30,6 +31,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-w" />
+			<Add option="-g0" />
 		</Compiler>
 		<Linker>
 			<Add library="cw32mt.lib" />
