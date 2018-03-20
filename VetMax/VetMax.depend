@@ -6,12 +6,17 @@
 	<windows.h>
 	<time.h>
 
-1520906231 source:c:\users\ckass\documents\git\uag\vetmax\main.c
+1521486055 source:c:\users\ckass\documents\git\uag\vetmax\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
 	"util.h"
 
-1521162425 c:\users\ckass\documents\git\uag\vetmax\util.h
+1521485238 c:\users\ckass\documents\git\uag\vetmax\util.h
 
-1520909222 source:c:\users\ckass\documents\git\uag\vetmax\util.c
+1521486201 source:c:\users\ckass\documents\git\uag\vetmax\util.c
 	<stdio.h>
 	<conio.h>
 	<stdlib.h>

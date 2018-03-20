@@ -13,14 +13,14 @@ void tiempoActual(void)
     timeinfo = localtime ( &rawtime );
     printf ( "\n\rDia y fecha: %s", asctime (timeinfo) );
 
-    return ;
+    return;
 }
 
 void menuSelect(void)
 {
     int choice = 1;
     int loop = 0;
-    int tecla = 0;
+    int tecla;
 
     do
     {
@@ -39,17 +39,17 @@ void menuSelect(void)
                 }
                 case 3:
                 {
-                    tecla=1;
                     break;
                 }
                 case 4:
                 {
-					Sleep(100);
-					loop = 1;
-                    break;
+					Sleep(50);
+					Creditos();
+					return;
                 }
                 default:
                 {
+                    printf("\n\r%i",choice);
                     break;
                 }
             }
@@ -70,6 +70,8 @@ void menuSelect(void)
             }
             case 2:
             {
+                //printf("Opcion %d", choice);
+
                 if(tecla==80)
                 {
                     clrscr();
@@ -88,6 +90,7 @@ void menuSelect(void)
             }
             case 3:
             {
+                //printf("Opcion %d", choice);
                 if(tecla==80)
                 {
                     clrscr();
@@ -106,6 +109,7 @@ void menuSelect(void)
             }
             case 4:
             {
+                //printf("Opcion %d", choice);
                 if(tecla==72)
                 {
                     clrscr();
@@ -126,129 +130,117 @@ void menuSelect(void)
     return;
 }
 
+// Cambia los colores si gustas
+
 void menuTitulo(void)
 {
     int count=0;
-    int x,y;
-    x=15;
+    int x=20, y=10;
     do
     {
+		textcolor(RED);
+		gotoxy(x,y);
+		cprintf("  _      _____ _______ _______ _      ______   _____  ______ _______ _____ ");
+		gotoxy(x,y+1);
+		cprintf(" | |    |_   _|__   __|__   __| |    |  ____| |  __ \|  ____|__   __/ ____|");
+		gotoxy(x,y+2);
+		cprintf(" | |      | |    | |     | |  | |    | |__    | |__) | |__     | | | (___  ");
+		gotoxy(x,y+3);
+		cprintf(" | |      | |    | |     | |  | |    |  __|   |  ___/|  __|    | |  \___ \ ");
+		gotoxy(x,y+4);
+		cprintf(" | |____ _| |_   | |     | |  | |____| |____  | |    | |____   | |  ____) |");
+		gotoxy(x,y+5);
+		cprintf(" |______|_____|  |_|     |_|  |______|______| |_|    |______|  |_| |_____/ ");
 
-    y=2;
-    textcolor(RED);
-    gotoxy(x,y++);
-    cprintf(" __     __   _            _                  _       ");
-    gotoxy(x,y++);
-    cprintf(" \\ \\   / /__| |_ ___ _ __(_)_ __   __ _ _ __(_) __ _ ");
-    gotoxy(x,y++);
-    cprintf("  \\ \\ / / _ \\ __/ _ \\ '__| | '_ \\ / _` | '__| |/ _` |");
-    gotoxy(x,y++);
-    cprintf("   \\ V /  __/ ||  __/ |  | | | | | (_| | |  | | (_| |");
-    gotoxy(x,y++);
-    cprintf("    \\_/ \\___|\\__\\___|_| _|_|_| |_|\\__,_|_|  |_|\\__,_|");
-    gotoxy(x,y++);
-    cprintf("            \\ \\   / /__| |_|  \\/  | __ ___  __       ");
-    gotoxy(x,y++);
-    cprintf("             \\ \\ / / _ \\ __| |\\/| |/ _` \\ \\/ /       ");
-    gotoxy(x,y++);
-    cprintf("              \\ V /  __/ |_| |  | | (_| |>  <        ");
-    gotoxy(x,y++);
-    cprintf("               \\_/ \\___|\\__|_|  |_|\\__,_/_/\\_\\");
-    Sleep(200);
-    textcolor(MAGENTA);
-    clrscr();
-    y=2;
-    gotoxy(x,y++);
-    cprintf(" __     __   _            _                  _       ");
-    gotoxy(x,y++);
-    cprintf(" \\ \\   / /__| |_ ___ _ __(_)_ __   __ _ _ __(_) __ _ ");
-    gotoxy(x,y++);
-    cprintf("  \\ \\ / / _ \\ __/ _ \\ '__| | '_ \\ / _` | '__| |/ _` |");
-    gotoxy(x,y++);
-    cprintf("   \\ V /  __/ ||  __/ |  | | | | | (_| | |  | | (_| |");
-    gotoxy(x,y++);
-    cprintf("    \\_/ \\___|\\__\\___|_| _|_|_| |_|\\__,_|_|  |_|\\__,_|");
-    gotoxy(x,y++);
-    cprintf("            \\ \\   / /__| |_|  \\/  | __ ___  __       ");
-    gotoxy(x,y++);
-    cprintf("             \\ \\ / / _ \\ __| |\\/| |/ _` \\ \\/ /       ");
-    gotoxy(x,y++);
-    cprintf("              \\ V /  __/ |_| |  | | (_| |>  <        ");
-    gotoxy(x,y++);
-    cprintf("               \\_/ \\___|\\__|_|  |_|\\__,_/_/\\_\\");
-    Sleep(200);
-    count++;
-    }while(count<2);
+		Sleep(200);
+		textcolor(WHITE);
+		clrscr();
+		gotoxy(x,y);
+		cprintf("  _      _____ _______ _______ _      ______   _____  ______ _______ _____ ");
+		gotoxy(x,y+1);
+		cprintf(" | |    |_   _|__   __|__   __| |    |  ____| |  __ \|  ____|__   __/ ____|");
+		gotoxy(x,y+2);
+		cprintf(" | |      | |    | |     | |  | |    | |__    | |__) | |__     | | | (___  ");
+		gotoxy(x,y+3);
+		cprintf(" | |      | |    | |     | |  | |    |  __|   |  ___/|  __|    | |  \___ \ ");
+		gotoxy(x,y+4);
+		cprintf(" | |____ _| |_   | |     | |  | |____| |____  | |    | |____   | |  ____) |");
+		gotoxy(x,y+5);
+		cprintf(" |______|_____|  |_|     |_|  |______|______| |_|    |______|  |_| |_____/ ");
+		Sleep(200);
+		count++;
+    }while(count<3);
     return;
 }
 
 
 void menuCuerpoRegistro(void)
 {
-    int y = 12;
+    int x=11, y=1;
 
-    gotoxy(1,31);
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     textbackground(WHITE);
+	textcolor(BLACK);
     cprintf(" _ ____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ ______ _ ");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                        ____            _     _                                                | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ \\ ___  __ _(_)___| |_ _ __ __ _ _ __                               | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       | |_) / _ \\/ _` | / __| __| '__/ _` | '__|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ |  __| (_| | \\__ | |_| | | (_| | |                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |_| \\_\\___|\\__, |_|___/\\__|_|  \\__,_|_|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  |___/                                                        | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
     textbackground(BLACK);
-    gotoxy(1,y++);
+	textcolor(WHITE);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|______|_____|___| |____|_____|_____|_____|_____|_____|_____|______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                    _    _          _                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                   / \\  | |__  _ __(_)_ __                                     | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  / _ \\ | '_ \\| '__| | '__|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                 / ___ \\| |_) | |  | | |                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                /_/   \\_|_.__/|_|  |_|_|                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ _____ _____ ___       __ _____ _____ _____ _____ _____ _____ _____|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                          __  __           _ _  __ _                                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |  \\/  | ___   __| (_)/ _(_)__ __ _ _ __ _                            | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |\\/| |/ _ \\ / _` | | |_| |/ __/ _` | '__|                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |  | | (_) | (_| | |  _| | (_| (_| | |                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |_|  |_|\\___/ \\__,_|_|_| |_|\\___\\__,_|_|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
 	cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-	gotoxy(1,y++);
+	gotoxy(x,y++);
     cprintf("| |                                 ____                                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                / ___|___ _ __ _ __ __ _ _ __                                  | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |   / _ | '__| '__/ _` | '__|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |__|  __| |  | | | (_| | |                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                \\____\\___|_|  |_|  \\__,_|_|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_______|_|");
 
 
@@ -257,70 +249,71 @@ void menuCuerpoRegistro(void)
 
 void menuCuerpoAbrir(void)
 {
-    int y = 12;
+    int x=11, y=1;
 
-    gotoxy(1,31);
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf(" _ ____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ ______ _ ");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                        ____            _     _                                                | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ \\ ___  __ _(_)___| |_ _ __ __ _ _ __                               | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       | |_) / _ \\/ _` | / __| __| '__/ _` | '__|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ |  __| (_| | \\__ | |_| | | (_| | |                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |_| \\_\\___|\\__, |_|___/\\__|_|  \\__,_|_|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  |___/                                                        | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
     textbackground(WHITE);
-    gotoxy(1,y++);
+	textcolor(BLACK);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|______|_____|___| |____|_____|_____|_____|_____|_____|_____|______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                    _    _          _                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                   / \\  | |__  _ __(_)_ __                                     | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  / _ \\ | '_ \\| '__| | '__|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                 / ___ \\| |_) | |  | | |                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                /_/   \\_|_.__/|_|  |_|_|                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ _____ _____ ___       __ _____ _____ _____ _____ _____ _____ _____|_|");
     textbackground(BLACK);
-    gotoxy(1,y++);
+	textcolor(WHITE);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                          __  __           _ _  __ _                                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |  \\/  | ___   __| (_)/ _(_)__ __ _ _ __ _                            | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |\\/| |/ _ \\ / _` | | |_| |/ __/ _` | '__|                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |  | | (_) | (_| | |  _| | (_| (_| | |                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |_|  |_|\\___/ \\__,_|_|_| |_|\\___\\__,_|_|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
 	cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-	gotoxy(1,y++);
+	gotoxy(x,y++);
     cprintf("| |                                 ____                                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                / ___|___ _ __ _ __ __ _ _ __                                  | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |   / _ | '__| '__/ _` | '__|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |__|  __| |  | | | (_| | |                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                \\____\\___|_|  |_|  \\__,_|_|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_______|_|");
 
 
@@ -329,143 +322,145 @@ void menuCuerpoAbrir(void)
 
 void menuCuerpoModificar(void)
 {
-    int y = 12;
+    int x=11, y=1;
 
-    gotoxy(1,31);
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf(" _ ____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ ______ _ ");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                        ____            _     _                                                | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ \\ ___  __ _(_)___| |_ _ __ __ _ _ __                               | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       | |_) / _ \\/ _` | / __| __| '__/ _` | '__|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ |  __| (_| | \\__ | |_| | | (_| | |                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |_| \\_\\___|\\__, |_|___/\\__|_|  \\__,_|_|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  |___/                                                        | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|______|_____|___| |____|_____|_____|_____|_____|_____|_____|______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                    _    _          _                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                   / \\  | |__  _ __(_)_ __                                     | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  / _ \\ | '_ \\| '__| | '__|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                 / ___ \\| |_) | |  | | |                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                /_/   \\_|_.__/|_|  |_|_|                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ _____ _____ ___       __ _____ _____ _____ _____ _____ _____ _____|_|");
     textbackground(WHITE);
-    gotoxy(1,y++);
+	textcolor(BLACK);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                          __  __           _ _  __ _                                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |  \\/  | ___   __| (_)/ _(_)__ __ _ _ __ _                            | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |\\/| |/ _ \\ / _` | | |_| |/ __/ _` | '__|                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |  | | (_) | (_| | |  _| | (_| (_| | |                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |_|  |_|\\___/ \\__,_|_|_| |_|\\___\\__,_|_|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
     textbackground(BLACK);
-    gotoxy(1,y++);
+	textcolor(WHITE);
+    gotoxy(x,y++);
 	cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-	gotoxy(1,y++);
+	gotoxy(x,y++);
     cprintf("| |                                 ____                                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                / ___|___ _ __ _ __ __ _ _ __                                  | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |   / _ | '__| '__/ _` | '__|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |__|  __| |  | | | (_| | |                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                \\____\\___|_|  |_|  \\__,_|_|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_______|_|");
 
 
-    return ;
+    return;
 }
 
 void menuCuerpoCerrar(void)
 {
-    int y = 12;
+    int x=11, y=1;
 
-    gotoxy(1,31);
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf(" _ ____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ ______ _ ");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                        ____            _     _                                                | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ \\ ___  __ _(_)___| |_ _ __ __ _ _ __                               | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       | |_) / _ \\/ _` | / __| __| '__/ _` | '__|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |  _ |  __| (_| | \\__ | |_| | | (_| | |                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                       |_| \\_\\___|\\__, |_|___/\\__|_|  \\__,_|_|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  |___/                                                        | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|______|_____|___| |____|_____|_____|_____|_____|_____|_____|______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                    _    _          _                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                   / \\  | |__  _ __(_)_ __                                     | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                  / _ \\ | '_ \\| '__| | '__|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                 / ___ \\| |_) | |  | | |                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                /_/   \\_|_.__/|_|  |_|_|                                       | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ _____ _____ ___       __ _____ _____ _____ _____ _____ _____ _____|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                          __  __           _ _  __ _                                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |  \\/  | ___   __| (_)/ _(_)__ __ _ _ __ _                            | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |\\/| |/ _ \\ / _` | | |_| |/ __/ _` | '__|                           | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         | |  | | (_) | (_| | |  _| | (_| (_| | |                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                         |_|  |_|\\___/ \\__,_|_|_| |_|\\___\\__,_|_|                              | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|____ _____ _____ _____ _____ ______ _____ ___ _ ____ _____ _____ _____ _____ _____ _____ ______|_|");
     textbackground(WHITE);
-    gotoxy(1,y++);
+	textcolor(BLACK);
+    gotoxy(x,y++);
 	cprintf("|_|____|_____|_____|_____|_____|_____|_____|____|_|_____|_____|_____|_____|_____|_____|_____|_____|_|");
-	gotoxy(1,y++);
+	gotoxy(x,y++);
     cprintf("| |                                 ____                                                          | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                / ___|___ _ __ _ __ __ _ _ __                                  | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |   / _ | '__| '__/ _` | '__|                                 | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                               | |__|  __| |  | | | (_| | |                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("| |                                \\____\\___|_|  |_|  \\__,_|_|                                    | |");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _______|_|");
-    gotoxy(1,y++);
+    gotoxy(x,y++);
     cprintf("|_|___|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_______|_|");
     textbackground(BLACK);
+	textcolor(WHITE);
 
 
 
@@ -475,49 +470,43 @@ void menuCuerpoCerrar(void)
 void Creditos(void)
  {
 
-	int y=21, x=0;
+	int y=25, x=30;
 	char c;
 	clrscr();
-	do
-	{
-		do
-		{
-			if(y>=20)
-				{
-				c=WHITE;
-				}
-			else if(y<20 && y>=14)
-				{
-				c=LIGHTGRAY;
-				}
-			else if(y<14 && y>=6)
-				{
-				c=DARKGRAY;
-				}
-			else if(y<6 && y>=0)
-				{
-				c=BLACK;
-				}
+    do
+    {
+        if(y>=20)
+        {
+            c=WHITE;
+        }
+        else if(y<20 && y>=14)
+        {
+            c=LIGHTGRAY;
+        }
+        else if(y<14 && y>=6)
+        {
+            c=DARKGRAY;
+        }
+        else if(y<6 && y>=0)
+        {
+            c=BLACK;
+        }
+        textcolor(c);
+        gotoxy(x+20,y-2);
+        cprintf("REALIZADO POR:\n\r");
+        gotoxy(x,y-1);
+        cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
+        gotoxy(x+10,y);
+        cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
+        Sleep(200);
+        textcolor(BLACK);
+        gotoxy(x+20,y-2);
+        cprintf("REALIZADO POR:\n\r");
+        gotoxy(x,y-1);
+        cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
+        gotoxy(x+10,y);
+        cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
 
-			textcolor(c);
-			gotoxy(40,y-2);
-			cprintf("REALIZADO POR:\n\r");
-			gotoxy(20,y-1);
-			cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
-			gotoxy(30,y);
-			cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
-			Sleep(200);
-			textcolor(BLACK);
-			gotoxy(40,y-2);
-			cprintf("REALIZADO POR:\n\r");
-			gotoxy(20,y-1);
-			cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
-			gotoxy(30,y);
-			cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
-
-		}while(--y>1);
-	x=10;
-	}while(x<1);
-
-return;
+    }while(--y>1);
+    return;
 }
