@@ -1,0 +1,4 @@
+--ID----CLIENTE-------------MASCOTA-------------NO DE VISITAS--
+  1     JUAN CASTAÑEDA      FIRULAIS                  10       
+  2     CARLOS KASSAB       ARES                      2        
+  3     LUIS DANIEL         MIKU                      12      

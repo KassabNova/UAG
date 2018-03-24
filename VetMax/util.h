@@ -5,6 +5,7 @@ void menuCuerpoAbrir(void);
 void menuCuerpoModificar(void);
 void menuCuerpoCerrar(void);
 void menuSelect(void);
+void Abrir(void);
 void Creditos(void);
 
 //Prototipos de aplicacion

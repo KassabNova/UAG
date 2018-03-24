@@ -5,6 +5,65 @@
 #include <time.h>
 #include "util.h"
 
+
+/***********************************
+WARNING WARNING WARNING WARNING
+ESTE ES UN PROTOTIPO SUCIO, AUN NO ES DINAMICO
+*************************************/
+void Abrir(void)
+{
+
+    char fila[200];
+
+	FILE *f;
+	f= fopen("datos.txt", "rt");
+		if(f==NULL)
+			{
+			perror("EL error es: ");
+			exit(1);
+			}
+    clrscr();
+	do{
+		fgets(fila,200, f);
+		puts(fila);
+
+	}while(!feof(f));
+
+
+	fclose(f);
+
+    getch();
+    clrscr();
+    return;
+}
+
+void modificar(void)
+{
+    char complete[200]= " ";
+	char cliente[20] = "     Mazzaro ";
+	char apellido[20] = "Navarro     ";
+	char mascota[10] = "Goku";
+	char ID[5] = " 4";
+	char visitas[25] = "                      35";
+	FILE *f;
+	f= fopen("datos.txt", "a");
+	if(f==NULL)
+	{
+		perror("EL error es: ");
+		exit(1);
+	}
+	strcat(complete, ID);
+	strcat(complete, cliente);
+	strcat(complete, apellido);
+	strcat(complete, mascota);
+	strcat(complete, visitas);
+	fputs(complete, f);
+
+	fclose(f);
+	getch();
+	clrscr();
+    return;
+}
 /*************************************
 tiempoActual OBTIENE LA FECHA Y HORA
 EN LA QUE SE CREA O MODIFICA UN REGISTRO
@@ -29,7 +88,10 @@ void menuSelect(void)
     int choice = 1;
     int loop = 0;
     int tecla;
-
+    gotoxy(1,50);
+    textcolor(RED);
+    cprintf("\n\rHASTA AHORA SOLO TENEMOS PROTOTIPOS DE REGISTRAR Y ABRIR, NO MUY BUENOS");
+    textcolor(WHITE);
     do
     {
         tecla = getch();
@@ -40,14 +102,24 @@ void menuSelect(void)
             {
                 case 1: //CREAR UN REGISTRO PARA NUEVO CLIENTE
                 {
-                    break;
+                    Sleep(50);
+                    clrscr();
+                    printf("se agrega una linea del input del usuario");
+                    Sleep(150);
+                    modificar();
+                    menuCuerpoRegistro();
+                   break;
                 }
                 case 2: //ABRIR UN REGISTRO
                 {
+                    Sleep(50);
+                    Abrir();
+                    menuCuerpoAbrir();
                     break;
                 }
                 case 3: //MODIFICACION DE LOS REGISTROS
                 {
+
                     break;
                 }
                 case 4: //SE LLAMA CREDITOS Y CIERRA EL PROGRAMA
@@ -140,6 +212,7 @@ void menuSelect(void)
 
     return;
 }
+
 
 /*****************************
 menuTitulo DESTELLA TRES VECES
@@ -489,11 +562,12 @@ void menuCuerpoCerrar(void)
 TERMINO DE FUNCIONES GRAFICAS PARA EL MENÚ
 ******************************************/
 
+
+
 /*****************************************
 SE LLAMA Creditos AL CERRAR EL PROGRAMA
 USANDO LA OPCIÓN DE SALIDA DEL MENÚ
 ******************************************/
-
 void Creditos(void)
  {
 
