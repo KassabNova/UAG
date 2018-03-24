@@ -5,6 +5,10 @@
 #include <time.h>
 #include "util.h"
 
+/*************************************
+tiempoActual OBTIENE LA FECHA Y HORA
+EN LA QUE SE CREA O MODIFICA UN REGISTRO
+**************************************/
 void tiempoActual(void)
 {
     time_t rawtime;
@@ -15,7 +19,11 @@ void tiempoActual(void)
 
     return;
 }
-
+/************************
+EL LOOP PRINCIPAL DEL PROGRAMA
+SE ENCUENTRA EN LA SELECCION
+DE OPCIONES DE MENU
+*************************/
 void menuSelect(void)
 {
     int choice = 1;
@@ -25,35 +33,38 @@ void menuSelect(void)
     do
     {
         tecla = getch();
+        //CUANDO TECLA SEA ENTER, SE LLAMA SU RESPECTIVA FUCNCION
         if (tecla==13)
         {
             switch(choice)
             {
-                case 1:
+                case 1: //CREAR UN REGISTRO PARA NUEVO CLIENTE
                 {
                     break;
                 }
-                case 2:
+                case 2: //ABRIR UN REGISTRO
                 {
                     break;
                 }
-                case 3:
+                case 3: //MODIFICACION DE LOS REGISTROS
                 {
                     break;
                 }
-                case 4:
+                case 4: //SE LLAMA CREDITOS Y CIERRA EL PROGRAMA
                 {
 					Sleep(50);
 					Creditos();
 					return;
                 }
-                default:
+                default: //EN CASO DE QUE EXISTA UN ERROR
                 {
-                    printf("\n\r%i",choice);
+                    printf("HUBO UN ERROR");
                     break;
                 }
             }
         }
+        //CUANDO LA TECLA SEA CUALQUIER OTRA, VERIFICA SI FUE FLECHA ARRIBA
+        //O SI FUE FLECHA ABAJO, ENTONCES LLAMARÁ A LA RESPECTIVA FUNCIÓN
         switch(choice)
         {
             case 1:
@@ -130,7 +141,10 @@ void menuSelect(void)
     return;
 }
 
-// Cambia los colores si gustas
+/*****************************
+menuTitulo DESTELLA TRES VECES
+EL NOMBRE DE LA EMPRESA
+******************************/
 
 void menuTitulo(void)
 {
@@ -173,7 +187,11 @@ void menuTitulo(void)
     return;
 }
 
-
+/*************************
+INICIAN LAS FUNCIONES PARA
+PODER MOSTRAR HIGHLIGHT EN
+EL MENU DE SELECCIÓN
+***************************/
 void menuCuerpoRegistro(void)
 {
     int x=11, y=1;
@@ -466,6 +484,15 @@ void menuCuerpoCerrar(void)
 
     return;
 }
+
+/*****************************************
+TERMINO DE FUNCIONES GRAFICAS PARA EL MENÚ
+******************************************/
+
+/*****************************************
+SE LLAMA Creditos AL CERRAR EL PROGRAMA
+USANDO LA OPCIÓN DE SALIDA DEL MENÚ
+******************************************/
 
 void Creditos(void)
  {

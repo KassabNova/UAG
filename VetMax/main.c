@@ -7,9 +7,9 @@
 
 int main(void)
 {
+    //Llamadas a funciones
     window(1,1,110,80);
     menuTitulo();
-    clrscr();
     menuCuerpoRegistro();
     menuSelect();
 
