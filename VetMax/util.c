@@ -14,20 +14,27 @@ void Abrir(void)
 {
 
     char fila[200];
-
+    char *token;
 	FILE *f;
-	f= fopen("datos.txt", "rt");
-		if(f==NULL)
-			{
-			perror("EL error es: ");
-			exit(1);
-			}
+	f= fopen("datos.txt", "a+");
+    if(f==NULL)
+    {
+        perror("EL error es: ");
+        exit(1);
+    }
     clrscr();
 	do{
-		fgets(fila,200, f);
-		puts(fila);
+        fgets(fila,200, f);
+        //puts(fila);
+        token = strtok(fila, "|");
+        while( token != NULL )
+        {
+            printf( " %s\n", token );
 
+            token = strtok(NULL, "|");
+        }
 	}while(!feof(f));
+
 
 
 	fclose(f);
@@ -40,11 +47,11 @@ void Abrir(void)
 void modificar(void)
 {
     char complete[200]= " ";
-	char cliente[20] = "     Mazzaro ";
-	char apellido[20] = "Navarro     ";
-	char mascota[10] = "Goku";
-	char ID[5] = " 4";
-	char visitas[25] = "                      35";
+	char cliente[15] = " ";
+	char apellido[15] = " ";
+	char mascota[15] = " ";
+	char ID[3] = " ";
+	char visitas[3] = " ";
 	FILE *f;
 	f= fopen("datos.txt", "a");
 	if(f==NULL)
@@ -52,13 +59,14 @@ void modificar(void)
 		perror("EL error es: ");
 		exit(1);
 	}
-	strcat(complete, ID);
+
+	/*strcat(complete, ID);
 	strcat(complete, cliente);
 	strcat(complete, apellido);
 	strcat(complete, mascota);
 	strcat(complete, visitas);
 	fputs(complete, f);
-
+*/
 	fclose(f);
 	getch();
 	clrscr();
