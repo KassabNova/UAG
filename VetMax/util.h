@@ -6,7 +6,8 @@ void menuCuerpoModificar(void);
 void menuCuerpoCerrar(void);
 void menuSelect(void);
 void Abrir(void);
-void Creditos(void);
+void Registrar(void);
+void creditos(void);
 
 //Prototipos de aplicacion
 void tiempoActual(void);

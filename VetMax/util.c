@@ -9,69 +9,178 @@
 /***********************************
 WARNING WARNING WARNING WARNING
 ESTE ES UN PROTOTIPO SUCIO, AUN NO ES DINAMICO
-*************************************/
+************************************/
 void Abrir(void)
 {
 
-    char fila[200];
+    char fila[300];
+    int x,c=1,y=3;
     char *token;
+
 	FILE *f;
-	f= fopen("datos.txt", "a+");
+	f= fopen("datos.txt", "rt");
     if(f==NULL)
     {
         perror("EL error es: ");
         exit(1);
     }
     clrscr();
-	do{
-        fgets(fila,200, f);
-        //puts(fila);
+	do
+    {
+        fgets(fila,300, f);
         token = strtok(fila, "|");
-        while( token != NULL )
+        do
         {
-            printf( " %s\n", token );
+            switch(c)
+            {
+            case 1:
+                {
+                    c=2;
+                    x=3;
+                    break;
+                }
+            case 2:
+                {
+                    c=3;
+                    x=9;
+                    break;
+                }
+            case 3:
+                {
+                    c=4;
+                    x=29;
+                    break;
+                }
+            case 4:
+                {
+                    c=5;
+                    x=49;
+                    break;
+                }
+            case 5:
+                {
+                    c=1;
+                    x=69;
+                    break;
+                }
+
+            }
+            gotoxy(x,y);
+            printf( "%s", token );
 
             token = strtok(NULL, "|");
-        }
+        }while( token != NULL );
+    y++;
 	}while(!feof(f));
 
 
 
 	fclose(f);
-
+    gotoxy(1,2);
+    textcolor(WHITE);
+    printf("--ID----CLIENTE-------------APELLIDOS-----------MASCOTA-------------VISITAS\n\r");
     getch();
     clrscr();
     return;
 }
 
-void modificar(void)
+void Registrar(void)
 {
-    char complete[200]= " ";
-	char cliente[15] = " ";
-	char apellido[15] = " ";
-	char mascota[15] = " ";
-	char ID[3] = " ";
-	char visitas[3] = " ";
-	FILE *f;
-	f= fopen("datos.txt", "a");
-	if(f==NULL)
-	{
-		perror("EL error es: ");
-		exit(1);
-	}
+    char line[200]="";
+    char id[5]="";
+    char cliente[20]="";
+    char apellidos[20]="";
+    char pet[25]="";
+    char visitas[4]="1";
+    char espacio[5]="|";
+    char next[]="\n";
+    int *token;
+    int i=1;
 
-	/*strcat(complete, ID);
-	strcat(complete, cliente);
-	strcat(complete, apellido);
-	strcat(complete, mascota);
-	strcat(complete, visitas);
-	fputs(complete, f);
-*/
-	fclose(f);
-	getch();
+    FILE *f;
+    f= fopen("datos.txt", "a+");
+    if(f==NULL)
+    {
+        perror("EL error es: ");
+        exit(1);
+    }
+    clrscr();
+    printf("Ingrese el ID\n\r");
+    gets(&id);
+    printf("Ingrese el nombre del cliente(Maximo 20 caracteres)\n\r");
+    gets(&cliente);
+    printf("Ingrese los apellidos del cliente(Maximo 20 caracteres)\n\r");
+    gets(&apellidos);
+    printf("Ingrese el nombre de la mascota(Maximo 25 caracteres)\n\r");
+    gets(&pet);
+    puts(&visitas);
+
+    strcat(line, id);
+    strcat(line, espacio);
+    strcat(line, cliente);
+    strcat(line, espacio);
+    strcat(line, apellidos);
+    strcat(line, espacio);
+    strcat(line, pet);
+    strcat(line, espacio);
+    strcat(line, visitas);
+
+    fputs(next, f);
+    fputs(line, f);
+
+
+fclose(f);
+clrscr();
+return;
+}
+/*****************************************
+SE LLAMA Creditos AL CERRAR EL PROGRAMA
+USANDO LA OPCIÓN DE SALIDA DEL MENÚ
+******************************************/
+void creditos(void)
+ {
+
+	int y=25, x=30;
+	char c;
 	clrscr();
+    do
+    {
+        if(y>=20)
+        {
+            c=WHITE;
+        }
+        else if(y<20 && y>=14)
+        {
+            c=LIGHTGRAY;
+        }
+        else if(y<14 && y>=6)
+        {
+            c=DARKGRAY;
+        }
+        else if(y<6 && y>=0)
+        {
+            c=BLACK;
+        }
+        textcolor(c);
+        gotoxy(x+20,y-2);
+        cprintf("REALIZADO POR:\n\r");
+        gotoxy(x,y-1);
+        cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
+        gotoxy(x+10,y);
+        cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
+        Sleep(200);
+        textcolor(BLACK);
+        gotoxy(x+20,y-2);
+        cprintf("REALIZADO POR:\n\r");
+        gotoxy(x,y-1);
+        cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
+        gotoxy(x+10,y);
+        cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
+
+    }while(--y>1);
     return;
 }
+
 /*************************************
 tiempoActual OBTIENE LA FECHA Y HORA
 EN LA QUE SE CREA O MODIFICA UN REGISTRO
@@ -111,10 +220,10 @@ void menuSelect(void)
                 case 1: //CREAR UN REGISTRO PARA NUEVO CLIENTE
                 {
                     Sleep(50);
-                    clrscr();
-                    printf("se agrega una linea del input del usuario");
+                    /*printf("se agrega una linea del input del usuario");
                     Sleep(150);
-                    modificar();
+                    */
+                    Registrar();
                     menuCuerpoRegistro();
                    break;
                 }
@@ -133,7 +242,7 @@ void menuSelect(void)
                 case 4: //SE LLAMA CREDITOS Y CIERRA EL PROGRAMA
                 {
 					Sleep(50);
-					Creditos();
+					creditos();
 					return;
                 }
                 default: //EN CASO DE QUE EXISTA UN ERROR
@@ -569,53 +678,3 @@ void menuCuerpoCerrar(void)
 /*****************************************
 TERMINO DE FUNCIONES GRAFICAS PARA EL MENÚ
 ******************************************/
-
-
-
-/*****************************************
-SE LLAMA Creditos AL CERRAR EL PROGRAMA
-USANDO LA OPCIÓN DE SALIDA DEL MENÚ
-******************************************/
-void Creditos(void)
- {
-
-	int y=25, x=30;
-	char c;
-	clrscr();
-    do
-    {
-        if(y>=20)
-        {
-            c=WHITE;
-        }
-        else if(y<20 && y>=14)
-        {
-            c=LIGHTGRAY;
-        }
-        else if(y<14 && y>=6)
-        {
-            c=DARKGRAY;
-        }
-        else if(y<6 && y>=0)
-        {
-            c=BLACK;
-        }
-        textcolor(c);
-        gotoxy(x+20,y-2);
-        cprintf("REALIZADO POR:\n\r");
-        gotoxy(x,y-1);
-        cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
-        gotoxy(x+10,y);
-        cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
-        Sleep(200);
-        textcolor(BLACK);
-        gotoxy(x+20,y-2);
-        cprintf("REALIZADO POR:\n\r");
-        gotoxy(x,y-1);
-        cprintf("CARLOS KASSAB ANDRE -----------LUIS DANIEL CUEVAS GARCIA\n\r");
-        gotoxy(x+10,y);
-        cprintf("UNIVERSIDAD AUTONOMA DE GUADALAJARA");
-
-    }while(--y>1);
-    return;
-}
