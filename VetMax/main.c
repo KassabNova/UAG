@@ -7,11 +7,11 @@
 
 int main(void)
 {
-    //Llamadas a funciones
-    window(1,1,110,80);
-    menuTitulo();
-    menuCuerpoRegistro();
-    menuSelect();
+	//Llamadas a funciones
+        window(1,1,110,80);
+        menuTitulo();
+        menuCuerpoRegistro();
+        menuSelect();
 
     return 0;
 }
