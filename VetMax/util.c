@@ -253,6 +253,7 @@ void Abrir(void)
 				else if(s==1)
 				{
 					agregarVisita();
+					break;
 				}
 				else if(s==2)
 				{
@@ -451,7 +452,14 @@ void agregarVisita()
 
 	int cliente,y2,ID, x=82,y=14, x2=95,c=1,s=0,visitas=0;
 	char fila[100];
-	char line[100];
+	char line[200]="";
+	char id[5];
+    char clienteCopy[20]="";
+    char apellidos[20]="";
+    char pet[25]="";
+    char visitasCopy[4]="1";
+    char espacio[5]="|";
+    char next[]="\n";
 	char *token;
 	FILE *f;
 	FILE *g;
@@ -475,9 +483,11 @@ void agregarVisita()
 	ID=asignacionID();
 
     y++;
-    textcolor(WHITE);
+
 	gotoxy(x,y++);
-	cprintf("----------------------------\n\r");
+	cprintf("REGISTRO PINCHES COMPLETADO\n\r");
+	Sleep(700);
+	textcolor(BLACK);
     gotoxy(x,y++);
     cprintf(" CLIENTE                    \n\r");
 	gotoxy(x,y++);
@@ -531,11 +541,22 @@ void agregarVisita()
                     cprintf("              \n\r");
                     do
                     {
+
+
+						/*
+
+
+
+						*/
                         switch(c)
                         {
                             case 1:
                             {
                                 c=2;
+                                strcpy(id,token);
+                                strcat(line, id);
+                                strcat(line, espacio);
+                                printf("%s",line);
                                 break;
                             }
                             case 2:
@@ -543,6 +564,9 @@ void agregarVisita()
                                 c=3;
                                 y2=19;
                                 gotoxy(x2,y2);
+                                strcpy(clienteCopy,token);
+                                strcat(line, clienteCopy);
+                                strcat(line, espacio);
                                 cprintf( "%s", token );
                                 break;
                             }
@@ -551,6 +575,9 @@ void agregarVisita()
                                 c=4;
                                 y2=21;
                                 gotoxy(x2,y2);
+                                strcpy(apellidos,token);
+                                strcat(line, apellidos);
+                                strcat(line, espacio);
                                 cprintf( "%s", token );
                                 break;
                             }
@@ -559,6 +586,9 @@ void agregarVisita()
                                 c=5;
                                 y2=23;
                                 gotoxy(x2,y2);
+                                strcpy(pet,token);
+                                strcat(line, pet);
+                                strcat(line, espacio);
                                 cprintf( "%s", token );
                                 break;
                             }
@@ -570,6 +600,10 @@ void agregarVisita()
                                 visitas= atoi(token);
                                 visitas++;
                                 itoa(visitas,token,10);
+                                strcpy(visitasCopy,token);
+                                strcat(line, visitasCopy);
+                                fputs(line, g);
+                                fputs(next, g);
                                 cprintf( "%s", token );
                                 break;
                             }
@@ -578,6 +612,18 @@ void agregarVisita()
                     }while( token != NULL );
                 }
             }
+			for(cliente;cliente<ID;cliente++)
+            {
+                fgets(fila,100, f);
+				fputs(fila,g);
+            }
+			fclose(f);
+            fclose(g);
+			rename("datos.txt", "respaldo.txt");
+			rename("copia.txt", "datos.txt");
+			rename("respaldo.txt", "copia.txt");
+
+
 			textcolor(BLACK);
 			textbackground(BLACK);
 			gotoxy(x,y++);
@@ -588,8 +634,7 @@ void agregarVisita()
 			cprintf("----------------------------\n\r");
 			textcolor(WHITE);
 		}
-fclose(f);
-fclose(g);
+
 gotoxy(1,1);
 return;
 }
