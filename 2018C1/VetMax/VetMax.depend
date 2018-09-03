@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1520398720 source:c:\users\ckass\documents\code blocks\vetmax\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
+
+1523943602 source:c:\users\ckass\documents\git\uag\vetmax\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
+	"util.h"
+
+1524101022 c:\users\ckass\documents\git\uag\vetmax\util.h
+
+1524112841 source:c:\users\ckass\documents\git\uag\vetmax\util.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
+	"util.h"
+
+1520710290 c:\users\ckass\documents\git\uag\vetmax\sqlite3.h
+	<stdarg.h>
+
