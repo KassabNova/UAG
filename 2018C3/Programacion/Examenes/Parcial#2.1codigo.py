@@ -11,6 +11,7 @@
 # (so be sure to read the docstrings!)
 import random
 import string
+import re
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -64,7 +65,8 @@ def is_word_guessed(secret_word, letters_guessed):
         if letter in letters_guessed:
             continue
         else:
-            guessed = False
+            guessed=False
+  
     return guessed
 		
 		
@@ -80,12 +82,14 @@ def get_guessed_word(secret_word, letters_guessed):
     returns: string, comprised of letters, underscores (_), and spaces that represents
     which letters in secret_word have been guessed so far.
     '''
+    guessed_word = ''
     for letter in secret_word:
         if letter in letters_guessed:
-            print(letter)
+            guessed_word += letter
         else:
-            print ("_ ")
-
+            guessed_word += "_ "
+    print("This is your progress: ", guessed_word)
+    return guessed_word
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     
 
@@ -133,18 +137,45 @@ def hangman(secret_word):
 
     Follows the other limitations detailed in the problem write-up.
     '''
-    guessess = 6
+    guesses = 6
+    warnings = 3
+    available_letters_number= 0
+    
     letters_guessed = []
+    guess=''
     print("Welcome to hangman")
     print("You have 6 guesses, use them wisely")
-    print("Your word has", len(secret_word),"letters" )
-    while guesses > 0:
+    print("I'm thinking of a word that is ", len(secret_word),"letters long" )
+    print("You have" ,warnings, "left")
+    while guesses > 0 :
+        available_letters_number = len(get_available_letters(letters_guessed))
+        print("----------------------------")
         print("You have ",guesses, "guesses left")
-        print("These are the remaining letters:" get_available_letters(letters_guessed) )
+        print("These are the remaining letters:", get_available_letters(letters_guessed) )
         print("Please give me one guess:")
-        letters_guessed.append(input())
+        guess = input()
+        letters_guessed.append(guess)
+        get_guessed_word(secret_word, letters_guessed)
+        if(available_letters_number == len(get_available_letters(letters_guessed))): #Checking if letter is in word
+            warnings -=1
+            print("Oops! That isn't a letter or you repeated a letter. You've", warnings, "warnings left")
+            if(warnings == 0):
+                print("We warned you! Loser") 
+                break
+        if (is_word_guessed(secret_word, letters_guessed)==False):
+            
+            guesses-=1
+            print("Oops! That letter isn't in my word")
+        if(is_word_guessed(secret_word, letters_guessed)):
+            print("Congrats, you won")
+            break
+
+       
+def warning():
+    pass
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    
+
+
 
 
 
