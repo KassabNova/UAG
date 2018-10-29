@@ -156,29 +156,36 @@ def hangman(secret_word):
         guess = input()
         letters_guessed.append(guess)
         get_guessed_word(secret_word, letters_guessed)
-        if(available_letters_number == len(get_available_letters(letters_guessed))): #Checking if letter is in word
-            warnings -=1
-            print("Oops! That isn't a letter or you repeated a letter. You've", warnings, "warnings left")
-            if(warnings == 0):
-                print("We warned you! Loser") 
-                break
+        
+                
+        
         if (is_word_guessed(secret_word, letters_guessed)==False):
-            
-            guesses-=1
-            print("Oops! That letter isn't in my word")
-        if(is_word_guessed(secret_word, letters_guessed)):
+            if guess in secret_word:
+                if(available_letters_number == len(get_available_letters(letters_guessed))): #Checking if letter is in word
+                    warnings -=1
+                    print("Oops! You repeated a letter or that isn't a letter. You've", warnings, "warnings left")
+            else:
+                if(available_letters_number == len(get_available_letters(letters_guessed))): #Checking if letter is in word
+                    warnings -=1
+                    print("Oops! You repeated a letter or that isn't a letter. You've", warnings, "warnings left")
+                else:
+                    guesses-=1
+                    print("Oops! That letter isn't in my word")
+                    if guesses == 0:
+                        print("You Lost, the word was", secret_word)
+                if(warnings == 0):
+                    print("The word was", secret_word)
+                    print("We warned you! Loser") 
+                    break
+        else:
             print("Congrats, you won")
             break
 
-       
-def warning():
-    pass
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
 
 
+            
 
-
-
+  
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
 #(hint: you might want to pick your own
@@ -261,9 +268,19 @@ def hangman_with_hints(secret_word):
 
 # To test part 2, comment out the pass line above and
 # uncomment the following two lines.
-wordlist = load_words()
-secret_word = "kassab"
-hangman(secret_word)
+if __name__ == "__main__":
+    # pass
+
+    # To test part 2, comment out the pass line above and
+    # uncomment the following two lines.
+    
+    #secret_word = choose_word(wordlist)
+    wordlist = load_words()
+    secret_word = choose_word(wordlist)
+    print(secret_word)
+    hangman(secret_word)
+
+
 
 ###############
 

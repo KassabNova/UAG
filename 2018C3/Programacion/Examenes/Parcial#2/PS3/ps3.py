@@ -98,7 +98,10 @@ def get_word_score(word, n):
     B = (7*len(word) - 3*(n-len(word)))
     if B<1: B=1
     for letter in word:
-        A +=int(SCRABBLE_LETTER_VALUES[letter])
+        if letter == '*':
+            continue
+        else:
+            A +=int(SCRABBLE_LETTER_VALUES[letter])
     return A*B
 #
 # Make sure you understand how this function works and what it does!
@@ -141,10 +144,13 @@ def deal_hand(n):
     
     hand={}
     num_vowels = int(math.ceil(n / 3))
-
-    for i in range(num_vowels):
+    x = '*'
+    hand[x] = hand.get(x, 0) + 1
+    for i in range(num_vowels-1):
         x = random.choice(VOWELS)
         hand[x] = hand.get(x, 0) + 1
+        if (i == num_vowels):
+            hand[x] = '*'
     
     for i in range(num_vowels, n):    
         x = random.choice(CONSONANTS)
@@ -254,39 +260,47 @@ def play_hand(hand, word_list):
       returns: the total score for the hand
       
     """
-    
+
+    hand_score = 0
     # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
-    # Keep track of the total score
+    # Keep t-rack of the total score
     
     # As long as there are still letters left in the hand:
-    
+    while calculate_handlen(hand) > 0:
+
         # Display the hand
-        
+        display_hand(hand)
         # Ask user for input
-        
+        print("Enter word, or !! to indicate that you are finished:")
+        word = input()
         # If the input is two exclamation points:
-        
+        if(word == '!!'):
+            break
             # End the game (break out of the loop)
 
             
         # Otherwise (the input is not two exclamation points):
-
+        else:
             # If the word is valid:
-
+            if (is_valid_word(word, hand, word_list)):
+                print(get_word_score(word, HAND_SIZE))
+                hand = update_hand(hand,word)
+                hand_score += get_word_score(word, HAND_SIZE)
                 # Tell the user how many points the word earned,
                 # and the updated total score
-
+            
             # Otherwise (the word is not valid):
+            else:
+                print("That was an invalid word")
                 # Reject invalid word (print a message)
                 
             # update the user's hand by removing the letters of their inputted word
             
-
     # Game is over (user entered '!!' or ran out of letters),
     # so tell user the total score
-
+    print("Your total score was ", hand_score, "points")
     # Return the total score as result of function
-
+    return hand_score
 
 
 #
@@ -354,8 +368,37 @@ def play_game(word_list):
 
     word_list: list of lowercase strings
     """
-    
-    print("play_game not implemented.") # TO DO... Remove this line when you implement this function
+    print("How many hands do you want to play?")
+    gameRounds= int(input())
+    total_score = 0
+    subsitute = True
+    replay = True
+    saved_hand = {}
+    while gameRounds > 0:
+        hand = deal_hand(HAND_SIZE)
+        display_hand(hand)
+        if(subsitute):
+            print("Do you want to substitute a letter: [Y/N] ")
+            if(input()=='Y'):
+                subsitute = False
+                print("Which letter will you replace:")
+                letter = input()    
+                hand = substitute_hand(hand, letter)
+        saved_hand = hand
+        hand_score = play_hand(hand, word_list)
+       
+        if(replay):
+            print("Do you want to replay your hand: [Y/N]")
+            if(input()== 'Y'):
+                replay = False
+                hand_score_replay = play_hand ( saved_hand, word_list)
+                if(hand_score_replay > hand_score): hand_score = hand_score_replay
+        
+        total_score += hand_score
+        gameRounds -=1
+    return total_score
+
+
     
 
 
@@ -366,4 +409,5 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
-    play_game(word_list)
+    FINAL_SCORE = play_game(word_list)
+    print("This was the FINAL SCORE:",FINAL_SCORE)
