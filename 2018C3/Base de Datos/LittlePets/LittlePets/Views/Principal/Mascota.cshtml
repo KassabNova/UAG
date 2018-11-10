@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Mascota";
+}
+@using LittlePets.Entidades
+@{
+    ViewData["Title"] = "Mascota";
+}
+@model List<Mascota>
+
+<h2>Mascotas</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td> Dueño</td>
+            <td> Nombre</td>
+            <td> Especie</td>
+            <td> Raza</td>
+            <td> </td>
+            <td> </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Mascota mascota in Model)
+        {
+            <tr>
+                <td> @mascota.Dueño</td>
+                <td> @mascota.Nombre</td>
+                <td> @mascota.Especie</td>
+                <td> @mascota.Raza</td>
+                <td>
+                <a href="@Url.Action("ObtenerMascotaDetalle", "Principal", new { idmascota = @mascota.IdMascota })">
+                    <div class="detalle-Mascota" data-id="@mascota.IdMascota">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </div>
+                </a>
+                </td>
+                <td>
+                    <div class="detalle-Mascota" data-id="@mascota.IdMascota">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </div>
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+
+
+
+</table>
+
+@section scripts {
+    @Scripts.Render("~/bundles/Mascota")
+}
+
