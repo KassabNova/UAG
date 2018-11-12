@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Detalle";
+}
+@using LittlePets.Entidades
+@model MascotaDetalle
+<h2>MascotaDetalle</h2>
+
+<div class="container">
+    <div class="col-lg-6">
+        @Model.Dueño
+    </div>
+    <div class="col-lg-6">
+        @Model.Cuidador
+    </div>
+    <div class="col-lg-6">
+        @Model.Especie
+    </div>
+    <div class="col-lg-6">
+        @Model.Raza
+    </div>
+    <div class="col-lg-6">
+        @Model.Color
+    </div>
+    <div class="col-lg-6">
+        @Model.Peso
+    </div>
+    <div class="col-lg-6">
+        @Model.Sexo
+    </div>
+    <div class="col-lg-6">
+        @Model.Nacimiento
+    </div>
+</div>
