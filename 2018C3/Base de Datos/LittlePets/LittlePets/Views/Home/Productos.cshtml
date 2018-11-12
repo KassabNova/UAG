@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using LittlePets.Entidades;
+@model List<Producto>
+@Styles.Render("~/Content/Site.css")
+<h2>@ViewBag.Title</h2>
+<h3 id="asdf">@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+<div id="productos" class="row" style="padding-right: 15px;padding-left: 15px; ">
+    <div id="wrapper">
+        @foreach (Producto producto in Model)
+        {
+            <div class="col-sm-3 producto border border-primary border">
+                <img class="imagen" src="@Url.Content("~/Content/Imagenes/Productos/"+producto.Nombre+".jpg")" />
+                <div style="margin-top:15px">
+                    <span class="glyphicon glyphicon-minus icon disable-select"></span>
+
+                    <span><input id="contador-@producto.IdProducto" class="contador disable-select" type="text" value="1" /></span>
+
+                    <span class="glyphicon glyphicon-plus icon disable-select "></span>
+                    <span style="float:right">  Disponibles: @producto.Cantidad  </span>
+
+                    <span style="float:right; margin-right:10px;">$@producto.Precio c/u   </span>
+                </div>
+                <div style="margin-top:15px">
+                    <span class="glyphicon glyphicon-shopping-cart icon disable-select"></span>
+
+                    <span><input class="carrito" type="button" value="Carrito" data-id="@producto.IdProducto" data-inventario="@producto.Cantidad" /></span>
+
+                    <span class="glyphicon glyphicon-list-alt icon "></span>
+                    <span><input class="inventario" type="button" value="Inventario" data-id="@producto.IdProducto" data-inventario="@producto.Cantidad" /></span>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/Productos")
+}

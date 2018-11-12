@@ -14,9 +14,20 @@ namespace LittlePets.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Mascotas";
-            List<Mascota> mascota = new List<Mascota>();
-            mascota = DALittlePets.ObtenerMascota();
-            return View("Mascota", mascota);
+            List<Mascota> mascotas = new List<Mascota>();
+            mascotas = DALittlePets.ObtenerMascota();
+            if(mascotas == null)
+            {
+                mascotas = new List<Mascota>();
+                Mascota vacio = new Mascota();
+                vacio.IdMascota = 123;
+                vacio.Dueño = "ABC";
+                vacio.Nombre = "DEF";
+                vacio.Especie = "ABGHIC";
+                vacio.Raza = "ZXCV";
+                mascotas.Add(vacio);
+            }
+            return View("Mascota", mascotas);
         }
         //public ActionResult ObtenerMascota()
         //{

@@ -1,12 +1,12 @@
 ﻿var modal;
 
 $(document).ready(function () {
-    alert("Esto es una Prueba");
+   // alert("Esto es una Prueba");
 
 });
 
 $('.detalle-Mascota').on('click', function () {
-    alert($(this).data("id"));
+    //alert($(this).data("id"));
     //$.ajax({
     //    url: '/Principal/ObtenerMascotaDetalle',
     //    data: { id: $(this).data("id") },

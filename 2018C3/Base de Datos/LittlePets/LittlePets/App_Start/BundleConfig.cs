@@ -28,6 +28,10 @@ namespace LittlePets
 
             bundles.Add(new StyleBundle("~/bundles/Mascota").Include(
                       "~/Scripts/custom-Mascota.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/Productos").Include(
+                      "~/Scripts/custom-productos.js",
+                      "~/Content/Site.css"));
         }
     }
 }

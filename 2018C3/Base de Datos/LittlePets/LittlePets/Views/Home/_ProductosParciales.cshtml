@@ -1,0 +1,29 @@
+﻿@using LittlePets.Entidades;
+@model List<Producto>
+<div id="wrapper">
+    @foreach (Producto producto in Model)
+    {
+        <div class="col-sm-3 producto border border-primary border">
+            <img class="imagen" src="@Url.Content("~/Content/Imagenes/Productos/"+producto.Nombre+".jpg")" />
+            <div style="margin-top:15px">
+                <span class="glyphicon glyphicon-minus icon disable-select"></span>
+
+                <span><input id="contador-@producto.IdProducto" class="contador disable-select" type="text" value="1" /></span>
+
+                <span class="glyphicon glyphicon-plus icon disable-select "></span>
+                <span style="float:right">  Disponibles: @producto.Cantidad  </span>
+
+                <span style="float:right; margin-right:10px;">$@producto.Precio c/u1  </span>
+            </div>
+            <div style="margin-top:15px">
+                <span class="glyphicon glyphicon-shopping-cart icon disable-select"></span>
+
+                <span><input class="carrito" type="button" value="Carrito" data-id="@producto.IdProducto" data-inventario="@producto.Cantidad" /></span>
+
+                <span class="glyphicon glyphicon-list-alt icon "></span>
+                <span><input class="inventario" type="button" value="Inventario" data-id="@producto.IdProducto" data-inventario="@producto.Cantidad" /></span>
+
+            </div>
+        </div>
+    }
+</div>
