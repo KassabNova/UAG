@@ -44,8 +44,9 @@ $(document).ready(function () {
                     url: '/Home/ActualizarProductos',
                     data: {},
                     success: function (response) {
-                        $('#wrapper').remove();
-                        $("#productos").html(response.data);
+                       // $('#wrapper').remove();
+                        //$("#productos").html(response.data);
+                        location.reload();
                     }
 
                 });
@@ -81,7 +82,8 @@ $(document).ready(function () {
                         url: '/Home/ActualizarProductos',
                         data: {},
                         success: function (response) {
-                            $("#productos").html(response.data);
+                            //$("#productos").html(response.data);
+                            location.reload();
                         }
 
                     });

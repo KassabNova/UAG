@@ -98,13 +98,16 @@ namespace LittlePets.Helpers.DataAccess
         }
 
 
-        public static List<Mascota> ObtenerAnalisis()
+        public static List<Analisis> ObtenerAnalisis()
         {
-            List<Mascota> mascotas = new List<Mascota>();
+            List<Analisis> analisis = new List<Analisis>();
+            CentroEstudio centro = new CentroEstudio();
 
             SqlConnection conexion = new SqlConnection(CONEXION);
 
-            string query = "select * from tblMascota";
+            string query = "SELECT A.IdAnalisis,A.Nombre AS Analisis, A.Precio, C.Nombre AS Centro, C.Domicilio, C.Telefono FROM tblAnalisis A " +
+                           "JOIN tblAnalisisCentro AC ON A.IdAnalisis = AC.IdAnalisis "+
+                           "JOIN tblCentroEstudio C ON C.IdCentro = AC.IdCentro";
             try
             {
                 using (conexion)
@@ -112,9 +115,8 @@ namespace LittlePets.Helpers.DataAccess
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
 
-                        comando.CommandTimeout = 600;
+                        //comando.CommandTimeout = 600;
                         comando.CommandType = CommandType.Text;
-                        //comando.Parameters.AddWithValue("@IdMensaje", idMensaje);
                         conexion.Open();
                         using (SqlDataReader lector = comando.ExecuteReader())
                         {
@@ -122,14 +124,18 @@ namespace LittlePets.Helpers.DataAccess
                             {
                                 while (lector.Read())
                                 {
-
-                                    mascotas.Add(new Mascota()
+                                    
+                                    
+                                    analisis.Add(new Analisis()
                                     {
-                                        IdMascota = Int32.Parse(lector["IdMascota"].ToString()),
-                                        Dueño = lector["NombreDueño"].ToString(),
-                                        Nombre = lector["NombreMascota"].ToString(),
-                                        Especie = lector["Especie"].ToString(),
-                                        Raza = lector["Raza"].ToString()
+
+                                        IdAnalisis = Int32.Parse(lector["IdAnalisis"].ToString()),
+                                        Nombre = lector["Analisis"].ToString(),
+                                        Precio = Double.Parse(lector["Precio"].ToString()),
+                                        Centro = lector["Centro"].ToString(),
+                                        Domicilio = lector["Domicilio"].ToString(),
+                                        Telefono = lector["Telefono"].ToString(),
+
                                     });
 
                                 }
@@ -142,7 +148,7 @@ namespace LittlePets.Helpers.DataAccess
             }
             catch
             {
-                mascotas = null;
+                analisis = null;
             }
             finally
             {
@@ -152,7 +158,7 @@ namespace LittlePets.Helpers.DataAccess
                 }
             }
 
-            return mascotas;
+            return analisis;
         }
 
         public static List<Producto> ObtenerProductos()

@@ -149,6 +149,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
+    <Compile Include="Entidades\Analisis.cs" />
+    <Compile Include="Entidades\CentroEstudio.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Mascota.cs" />

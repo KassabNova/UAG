@@ -1,54 +1,79 @@
-﻿@{
-    ViewBag.Title = "Mascota";
-}
-@using LittlePets.Entidades
+﻿@using LittlePets.Entidades
 @{
-    ViewData["Title"] = "Mascota";
+    ViewData["Title"] = ViewBag.Title;
 }
 @model List<Mascota>
 
-<h2>Mascotas</h2>
+<h2>@ViewBag.Title</h2>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <td> Dueño</td>
-            <td> Nombre</td>
-            <td> Especie</td>
-            <td> Raza</td>
-            <td> </td>
-            <td> </td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Mascota mascota in Model)
-        {
-            <tr>
-                <td> @mascota.Dueño</td>
-                <td> @mascota.Nombre</td>
-                <td> @mascota.Especie</td>
-                <td> @mascota.Raza</td>
-                <td>
-                <a href="@Url.Action("ObtenerMascotaDetalle", "Principal", new { idmascota = @mascota.IdMascota })">
-                    <div class="detalle-Mascota" data-id="@mascota.IdMascota">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </div>
-                </a>
-                </td>
-                <td>
-                    <div class="detalle-Mascota" data-id="@mascota.IdMascota">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </div>
-                </td>
+@if (Model != null)
+{
+    <div class="col-md-8">
+        <table class="table table-hover">
+            <thead style="color:white; background-color: #101010;">
+                <tr>
+                    <td> Dueño</td>
+                    <td> Nombre</td>
+                    <td> Especie</td>
+                    <td> Raza</td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Mascota mascota in Model)
+                {
+                    <tr>
+                        <td> @mascota.Dueño</td>
+                        <td> @mascota.Nombre</td>
+                        <td> @mascota.Especie</td>
+                        <td> @mascota.Raza</td>
+                        <td>
+                            <a href="@Url.Action("ObtenerMascotaDetalle", "Principal", new { idmascota = @mascota.IdMascota })">
+                                <div class="detalle-Mascota" data-id="@mascota.IdMascota" style="color:green;">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </div>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("EliminarMascota", "Principal", new { idmascota = @mascota.IdMascota })">
+                                <div class="eliminar-Mascota" data-id="@mascota.IdMascota" style="color:red;">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4 text-center">
+        <h4>Mascotas @ViewBag.Opcion: @Model.Count</h4>
+    </div>
+}
+else
+{
+    <div class="col-md-8 text-center" style="margin-bottom:100px;">
+        <br />
+        <h4> No hay registros disponibles</h4>
+    </div>
+}
 
-            </tr>
 
-        }
-    </tbody>
+<div class="col-md-4 text-center" style="margin-bottom:25px;">
+    @using (Html.BeginForm("BuscarMascota", "Principal"))
+    {
+        <input type="text" class="form-control" style="margin:auto; margin-bottom:10px;" name="nombre" id="exampleInputEmail1" placeholder="Buscar mascota por nombre" required>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    }
+</div>
 
+<div class="col-md-4 text-center" style="float:right; margin-bottom:25px;">
+    <a type="button" class="btn btn-primary" href="@Url.Action("Index","Principal")"> Mostrar Todos </a>
+</div>
 
-
-</table>
+<div class="col-md-4 text-center" style="float:right; margin-bottom:25px;">
+    <button type="button" class="btn btn-primary">Agregar Mascota</button>
+</div>
 
 @section scripts {
     @Scripts.Render("~/bundles/Mascota")

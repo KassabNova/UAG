@@ -1,10 +1,77 @@
-﻿@{
-    
-    ViewBag.Title = "About";
+﻿@using LittlePets.Entidades
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+@model List<Analisis>
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null)
+{
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead style="color:white; background-color: #101010;">
+                <tr>
+                    <td> Nombre</td>
+                    <td> Tipo</td>
+                    <td> Precio</td>
+                    <td> Centro</td>
+                    <td> Ubicación</td>
+                    <td> Telefono</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Analisis analisis in Model)
+                {
+                    <tr>
+                        <td> @analisis.Nombre</td>
+                        <td> @analisis.Tipo</td>
+                        <td> @analisis.Precio</td>
+                        <td> @analisis.Centro</td>
+                        <td> @analisis.Domicilio <a href="https://www.google.com/maps/search/@analisis.Domicilio" target="_blank"><span class="glyphicon glyphicon-globe" style="float:right"></span></a></td>
+                        <td> @analisis.Telefono</td>
+
+
+                        @*<td>
+                            <a href="@Url.Action("ObtenerMascotaDetalle", "Principal", new { idmascota = @mascota.IdMascota })">
+                                <div class="detalle-Mascota" data-id="@mascota.IdMascota" style="color:green;">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </div>
+                        </td>*@
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 }
+else
+{
+    <div class="col-md-8 text-center" style="margin-bottom:100px;">
+        <br />
+        <h4> No hay registros disponibles</h4>
+    </div>
+}
 
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+@*<div class="col-md-4 text-center" style="margin-bottom:25px;">
+        @using (Html.BeginForm("BuscarMascota", "Principal"))
+        {
+            <input type="text" class="form-control" style="margin:auto; margin-bottom:10px;" name="nombre" id="exampleInputEmail1" placeholder="Buscar mascota por nombre" required>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        }
+    </div>
+
+    <div class="col-md-4 text-center" style="float:right; margin-bottom:25px;">
+        <a type="button" class="btn btn-primary" href="@Url.Action("Index","Principal")"> Mostrar Todos </a>
+    </div>
+
+    <div class="col-md-4 text-center" style="float:right; margin-bottom:25px;">
+        <button type="button" class="btn btn-primary">Agregar Mascota</button>
+    </div>*@
+
+@section scripts {
+    @Scripts.Render("~/bundles/Mascota")
+}
+

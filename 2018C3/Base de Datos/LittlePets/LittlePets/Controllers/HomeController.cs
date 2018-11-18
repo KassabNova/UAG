@@ -86,9 +86,24 @@ namespace LittlePets.Controllers
         }
         public ActionResult Analisis()
         {
-            ViewBag.Message = "Your application description page.";
+            List<Analisis> analisis = new List<Analisis>();
+            analisis = DALittlePets.ObtenerAnalisis();
+            if (analisis == null)
+            {
+                CentroEstudio centro = new CentroEstudio();
+            
+                analisis = new List<Analisis>();
+                Analisis vacio = new Analisis();
+                vacio.IdAnalisis = 123;
+                vacio.Nombre = "Vacio";
+                vacio.Precio = 0;
+                vacio.Centro = "VACIO";
+                vacio.Domicilio = "VACIO";
+                vacio.Telefono = "VACIO";
+                analisis.Add(vacio);
+            }
 
-            return View();
+            return View(analisis);
         }
 
         public ActionResult Contact()
